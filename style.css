@@ -1,0 +1,1002 @@
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding: 0;
+    font-family: Lustria,Montserrat,sans-serif;
+}
+header {
+    background-color:#8a0520;
+    display:flex;
+    align-items: center;
+    border-radius: 10px 10px 0px 0px ;
+}
+body {
+    overflow-x: hidden;
+}
+    
+ /*color clara: #d99f918*/
+
+ header nav a {
+    color: #FFFFFF;
+    font-weight: 600;
+    margin-left: 50px;
+    padding: 24px;
+    text-decoration: none;
+    position: relative; /* Adiciona posicionamento relativo */
+}
+
+/* Estilos para todos os links no header, exceto .botvenha */
+header nav a:not(.botvenha) {
+    color: #FFFFFF;
+    font-weight: 600;
+    margin-left: 50px;
+    padding: 24px;
+    text-decoration: none;
+    position: relative; /* Adiciona posicionamento relativo */
+}
+
+/* Estilos para a linha sob os links no header, exceto .botvenha */
+header nav a:not(.botvenha)::after {
+    content: '';
+    position: absolute; /* Adiciona posicionamento absoluto */
+    bottom: -5px; /* Posiciona a linha abaixo do texto */
+    left: 0; /* Alinha a linha com o início do texto */
+    width: 0; /* Inicia a largura como 0 */
+    height: 2px; /* Define a altura da linha */
+    background-color: #FFFFFF; /* Cor da linha */
+    transition: width 0.3s; /* Adiciona uma transição para animação suave */
+}
+
+/* Estilos para quando o mouse passa sobre os links no header, exceto .botvenha */
+header nav a:not(.botvenha):hover::after {
+    width: 100%; /* Aumenta a largura da linha quando o mouse passa sobre o link */
+}
+
+header img{
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 32px;
+
+   
+}
+.botvenha{
+    margin-left: 300px;
+    background-color: #ffffff;
+    border-radius: 50px;
+    padding: 16px;
+    color:black;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; /* Adiciona uma transição suave */
+
+}
+.botvenha:hover{
+    border-color: #8a0520; /* Altera a cor da borda */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Aumenta a sombra */
+    transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
+
+}
+#sobre{
+    display:flex;
+    align-items: center;
+    gap: 32px;
+    padding: 0px 100px 0px 80px;
+    background-color:#8a0520;
+    border-radius: 0px 0px 10px 10px ;
+
+
+}
+
+#sobre h3{
+    margin-bottom:24px;
+    font-size: 50px;
+    letter-spacing: 2px;
+    line-height: 98%;
+    color:white;   
+}
+#sobre p{
+    margin-bottom:64px;
+    font-size: 25px;
+    line-height: 110%;
+    color:white;   
+
+
+   
+}
+.conversar{
+    display: inline-block; /* Faz o link se comportar como um bloco com largura e altura ajustáveis */
+    padding: 10px 20px; /* Adiciona preenchimento interno ao botão */
+    background-color: #ffffff; /* Cor de fundo do botão */
+    color: black; /* Cor do texto */
+    text-decoration: none; /* Remove o sublinhado padrão do link */
+    border-radius: 50px; /* Borda arredondada */
+    border: 2px solid transparent; /* Borda transparente inicial */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra ao botão */
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s; /* Adiciona uma transição suave */
+}
+.saiba{
+    display: inline-block; /* Faz o link se comportar como um bloco com largura e altura ajustáveis */
+    padding: 10px 20px; /* Adiciona preenchimento interno ao botão */
+    background-color: #8a0520; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    text-decoration: none; /* Remove o sublinhado padrão do link */
+    border-radius: 50px; /* Borda arredondada */
+    border: 2px solid transparent; /* Borda transparente inicial */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra ao botão */
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s; /* Adiciona uma transição suave */
+}
+
+/* Quando o mouse passa sobre o botão */
+.conversar:hover, .saiba:hover {
+    color: black; /* Cor do texto */
+    background-color: #f0f0f0; /* Altera a cor de fundo */
+    border-color: #8a0520; /* Altera a cor da borda */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Aumenta a sombra */
+    transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
+}
+
+
+
+
+.imgprinc{
+    margin-left: 32px;
+    height: 540px;
+    margin-bottom:0;
+
+}
+.back1{ /*teste*/
+    background-color:black;
+    padding:16px;
+
+}
+#servicos{
+    display:flex;
+    background-color: black;
+    color: white;
+    align-items: center;
+    gap: 32px;    
+    justify-content: center; 
+
+ 
+}
+#servicos h4{
+    font-size: 50px;
+    letter-spacing: 2px;
+    line-height: 98%;
+    color:white;   
+}
+#servicos p {
+    margin-top: 24px;
+    font-size: 25px;
+    line-height: 110%;
+    color:white;
+    
+} 
+.titserv{
+    font-size: 25px;
+    padding-top: 64px;
+    text-align: center;
+    margin: 50px; /* Ajuste conforme necessário */
+
+}
+.serv1{
+    padding:85px;
+
+}
+.subtit{
+    font-size: 20px;
+
+}
+.serv1 p{
+    margin-bottom: 32px;
+    font-size: 10px;
+
+}
+.imgserv1, .imgserv2, .imgserv3, .imgserv4, .imgserv5 {
+    height: 200px;
+    margin:32px;
+    margin-right: 32px;
+    
+
+}
+
+
+#clientes{
+    background-color:white;
+    border-radius: 10px 10px 10px 10px ;
+    padding-bottom: 32px;
+
+}
+.clitit{
+    padding-top: 64px;
+    font-size: 40px;
+    text-align: center;
+    margin: 50px;
+}
+
+.carousel-container {
+    overflow: hidden; /* Esconde o conteúdo que excede as dimensões do contêiner */
+    width: 100%; /* Largura do contêiner */
+    height: 200px; /* Altura do contêiner */
+}
+
+.carousel-track {
+    display: flex; /* Para que as imagens fiquem em linha */
+}
+
+.carousel-item {
+    width: 200px; /* Largura de cada imagem */
+    height: 200px; /* Altura de cada imagem */
+    margin-right: 20px; /* Espaçamento entre as imagens */
+}
+.carousel-track img{
+    padding:8px;
+    
+}
+
+
+.imgwork{
+    height: 450px;
+    align-itens: center;
+    margin: 32px;
+    margin-left:84px;
+    text-align: center;
+    border-radius: 50px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+    transition: transform 0.3s, box-shadow 0.3s; 
+    border: 2px solid transparent; 
+}
+
+.imgwork:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+    border-color: #ffffff; 
+}
+
+.imgestrela{
+    justify-content: center;
+    height: 100px;
+    align-itens: center;
+    
+}
+
+.titfeed{
+    padding-top: 64px;
+    font-size: 40px;
+    text-align: center;
+    margin: 50px;
+}
+.infotxt {
+    display: flex;
+    align-items: center;
+    border: 0.5px solid ; 
+    border-radius: 25px;
+    border-color: #e0e0e0;
+    margin:38px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+    transition: transform 0.3s, box-shadow 0.3s; 
+
+}
+.infotxt:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5); 
+    border-color: #ffffff; 
+}
+
+.imgmodelo {
+    border-radius: 25px;
+    height: 150px;
+    margin: 32px; 
+}
+
+.info-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nometxt,
+.proftxt,
+.imgestrela {
+    margin: 0; 
+}
+.nometxt,
+.proftxt{
+    text-align:center;
+    margin-top: 32px;
+}
+.proftxt {
+    margin-top: 4px; 
+}
+.imgestrela {
+    width: 100px;
+    margin-left: 8px; 
+}
+
+.infotxt p{
+    margin:32px;
+}
+
+.titcontato{
+    padding-top: 64px;
+    font-size: 40px;
+    text-align: center;
+    margin: 50px;
+    color: white;
+}
+.subtit{
+    color: white;
+    text-align:center;
+    font-size: 25px;
+
+}
+
+.form{
+    color: white;
+    margin:48px;
+}
+
+::placeholder {
+    text-align: left; 
+    color: black; 
+}
+
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+    border: 2px solid transparent; 
+    border-radius: 8px; 
+    padding: 10px;
+    padding-right: 328px; 
+    box-sizing: border-box; 
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); 
+ 
+}
+
+input:focus,
+textarea:focus {
+    outline: none; 
+    border-color: #8a0520; 
+}
+
+input[type="submit"] {
+    border-radius: 25px;
+    padding: 12px 25px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); 
+    transition: transform 0.3s, box-shadow 0.3s; 
+}
+
+input[type="submit"]:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5); 
+    border-color: #ffffff; 
+    background-color: #8a0520;
+    color: white;
+}
+.titcontato2{
+    padding-top: 25px;
+    font-size: 25px;
+    text-align: center;
+    margin: 36px;
+    color: white;
+}
+.imgsocial{
+    height: 50px;
+    margin: 16px 8px;
+}
+.imgsocial1{
+    height: 50px;
+    margin: 16px 8px;
+}
+.imgsocial2{
+    height: 50px;
+    margin: 16px 8px;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+
+.social-container {
+    flex: 1; 
+}
+.social-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+
+    
+}
+
+.social-item {
+    display: flex;
+    align-items: center; 
+    margin-bottom: 16px;
+    border-radius: 25px; /* Adiciona bordas arredondadas */
+    border: 1px solid #FFFFFF; /* Adiciona uma borda */
+    transition: background-color 0.3s, border-color 0.3s; /* Adiciona transição suave */
+    height: 60px; /* Defina a altura desejada */
+    width: 400px; /* Defina a largura desejada */
+    transition: transform 0.3s; /* Adiciona uma transição suave */
+
+}
+
+.social-item:hover  {
+    transform: scale(1.05); 
+    /* Troca a imagem ao passar o mouse */
+}
+
+
+.social-item a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #FFFFFF;
+    margin-right:16px;
+    margin-left:16px;
+    
+   /* Adiciona um espaçamento entre a imagem e o texto */
+}
+
+/* Estilo padrão da imagem */
+.imgsocial, .imgsocial1, .imgsocial2 {
+    height: 30px;
+    margin-right: 10px; /* Ajusta o espaçamento entre a imagem e o texto */
+    transition: transform 0.3s; /* Adiciona uma transição suave */
+}
+
+/* Estilo da imagem ao passar o mouse sobre o link */
+.social-item:hover .imgsocial {
+    content: url('./imagens/instagram color.png');
+    transform: scale(1.25); 
+    /* Troca a imagem ao passar o mouse */
+}
+
+.social-item:hover .imgsocial1 {
+    content: url('./imagens/whatsapp color.png');
+    transform: scale(1.25); 
+    /* Troca a imagem ao passar o mouse */
+}
+.social-item:hover .imgsocial2 {
+    content: url('./imagens/telefone color.png');
+    transform: scale(1.25); 
+    /* Troca a imagem ao passar o mouse */
+}
+
+footer{
+    background-color: #8a0520;
+    display: flex;
+    gap: 80px;
+    padding: 64px 80px;
+    border-radius: 25px;
+}
+
+.titulo{
+    color: #ffffff;
+}
+footer img, footer .titulo{
+    display: block;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+footer a{
+    color: #ffffff;
+    display: block;
+    margin-bottom: 16px;
+    text-decoration: none;
+    max-width: 350px;
+    transition: transform 0.3s; /* Adiciona uma transição suave */
+
+}
+
+footer a:hover {
+    transform: scale(1.05); 
+    /* Troca a imagem ao passar o mouse */
+}
+
+footer p{
+    color: #ffffff;
+    display: block;
+    margin-bottom: 16px;
+    text-decoration: none;
+    max-width: 350px;
+}
+.fixed-buttons {
+    position: fixed; /* Define a posição fixa */
+    bottom: 20px; /* Distância da parte inferior da tela */
+    right: 20px; /* Distância da parte direita da tela */
+    z-index: 1000; /* Garante que os botões estejam acima de outros elementos */
+}
+
+.fixed-buttons a {
+    display: block; /* Faz os botões se comportarem como blocos */
+    background-color: #8a0520; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    text-decoration: none; /* Remove o sublinhado padrão do link */
+    border-radius: 25px; /* Borda arredondada */
+    margin-bottom: 10px; /* Espaçamento entre os botões */
+    margin-right: 10px;
+    text-align: center; /* Centraliza o texto */
+    transition: transform 0.3s; /* Adiciona uma transição suave */
+
+}
+
+.fixed-buttons a:hover {
+    background-color: #6c0317;
+    transform: scale(1.25); 
+    
+}
+
+.menu-sanduiche {
+    display: none; /* Inicialmente oculto */
+    cursor: pointer;
+}
+
+.menu-sanduiche .sanduiche {
+    width: 30px;
+    height: 3px;
+    background-color: #FFFFFF;
+    margin: 6px 0;
+    transition: transform 0.3s;
+}
+
+.menu-sanduiche.aberto .sanduiche:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.menu-sanduiche.aberto .sanduiche:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-sanduiche.aberto .sanduiche:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+
+@media (max-width: 450px){
+    header {
+        background-color:#8a0520;
+        display:flex;
+        align-items: center;
+        border-radius: 10px 10px 0px 0px ;
+    }
+    body {
+        overflow-x: hidden;
+    }
+        
+     /*color clara: #d99f918*/
+    
+     header nav a {
+        color: #FFFFFF;
+        font-weight: 600;
+        margin-left: 50px;
+        padding: 24px;
+        text-decoration: none;
+        position: relative; /* Adiciona posicionamento relativo */
+    }
+    
+    /* Estilos para todos os links no header, exceto .botvenha */
+    header nav a:not(.botvenha) {
+        color: #FFFFFF;
+        font-weight: 600;
+        margin-left: 50px;
+        padding: 24px;
+        text-decoration: none;
+        position: relative; /* Adiciona posicionamento relativo */
+    }
+    
+    /* Estilos para a linha sob os links no header, exceto .botvenha */
+    header nav a:not(.botvenha)::after {
+        content: '';
+        position: absolute; /* Adiciona posicionamento absoluto */
+        bottom: -5px; /* Posiciona a linha abaixo do texto */
+        left: 0; /* Alinha a linha com o início do texto */
+        width: 0; /* Inicia a largura como 0 */
+        height: 2px; /* Define a altura da linha */
+        background-color: #FFFFFF; /* Cor da linha */
+        transition: width 0.3s; /* Adiciona uma transição para animação suave */
+    }
+    
+    /* Estilos para quando o mouse passa sobre os links no header, exceto .botvenha */
+    header nav a:not(.botvenha):hover::after {
+        width: 100%; /* Aumenta a largura da linha quando o mouse passa sobre o link */
+    }
+    
+    header img{
+        margin-top: 4px;
+        margin-bottom: 4px;
+        margin-left: 32px;
+    
+       
+    }
+    .botvenha{
+        margin-left: 300px;
+        background-color: #ffffff;
+        border-radius: 50px;
+        padding: 16px;
+        color:black;
+        transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; /* Adiciona uma transição suave */
+    
+    }
+    .botvenha:hover{
+        border-color: #8a0520; /* Altera a cor da borda */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Aumenta a sombra */
+        transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
+    
+    }
+
+    header {
+        position: relative; /* Necessário para posicionar o menu sanduíche */
+    }
+
+    .menu-sanduiche {
+        display: block; /* Exibir apenas em telas pequenas */
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+
+    .menu-links {
+        display: none; /* Inicialmente oculto */
+        position: absolute;
+        top: 80px;
+        right: 0;
+        background-color: #8a0520;
+        border-radius: 0 0 10px 10px;
+        padding: 10px 20px;
+    }
+
+    .menu-links a {
+        display: block;
+        color: #FFFFFF;
+        font-weight: 600;
+        margin-bottom: 10px;
+        text-decoration: none;
+    }
+
+    .menu-sanduiche.aberto + .menu-links {
+        display: block; /* Exibir quando o menu sanduíche estiver aberto */
+    }
+    
+    #sobre{
+        display:block;
+        align-items: center;
+        text-align:center;
+        justify-content:center;
+        padding: 20px 100px 0px 80px;
+        background-color:#8a0520;
+        border-radius: 0px 0px 10px 10px ;
+    }
+    #sobre h3{
+        font-size: 30px;
+    }
+    #sobre p{
+        font-size: 20px;
+
+    }
+    .imgprinc{
+        height: 340px;
+        margin-bottom:0;
+        align-items: center;
+
+    
+    }
+
+    #servicos{
+        flex-direction: column; /* Altera a direção do flex container para coluna */
+        background-color: black;
+        color: white;
+        align-items: center;
+        text-align:center;
+
+    
+    }
+    #servicos h4{
+        font-size: 40px;
+        letter-spacing: 2px;
+        line-height: 98%;
+        color:white; 
+        padding:32px;
+  
+    }
+    #servicos p {
+        font-size: 16px;
+        line-height: 110%;
+        color:white;
+        text-align:center;
+
+        
+    } 
+    .titserv{
+        font-size: 20px;
+        text-align: center;
+
+    }
+    .subtit{
+        font-size: 20px;
+
+    }
+    
+  
+    .imgserv1 ,.imgserv3, .imgserv5 {
+        width: 0%;
+        height: 0%;
+        
+    }
+    .imgserv2 ,.imgserv4 {
+        width: 00%;
+        height: 0%;
+       
+    }
+    .saiba{
+        padding: 10px 20px; /* Adiciona preenchimento interno ao botão */
+        background-color: #8a0520; /* Cor de fundo do botão */
+        color: white; /* Cor do texto */
+        text-decoration: none; /* Remove o sublinhado padrão do link */
+        border-radius: 50px; /* Borda arredondada */
+        border: 2px solid transparent; /* Borda transparente inicial */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra ao botão */
+        transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s; /* Adiciona uma transição suave */
+    }
+    .fotos{
+        display: block;
+        align-itens: center;
+        text-align:center;
+        justify-content: center;
+    }
+    .imgwork{
+        height: 400px;
+        align-itens: center;
+        margin: 32px;
+        text-align: center;
+        border-radius: 50px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+        transition: transform 0.3s, box-shadow 0.3s; 
+        border: 2px solid transparent;
+        
+    }
+    
+    .imgwork:hover {
+        transform: scale(1.05); 
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+        border-color: #ffffff; 
+    }
+    
+    .imgestrela{
+        justify-content: center;
+        height: 100px;
+        align-itens: center;
+        
+    }
+    
+    .titfeed{
+        padding-top: 64px;
+        font-size: 40px;
+        text-align: center;
+        margin: 50px;
+    }
+    .infotxt {
+        display: block;
+        align-itens: center;
+        text-align:center;
+        justify-content: center;
+        border: 0.5px solid ; 
+        border-radius: 25px;
+        border-color: #e0e0e0;
+        margin:38px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+        transition: transform 0.3s, box-shadow 0.3s; 
+    
+    }
+    .infotxt:hover {
+        transform: scale(1.05); 
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5); 
+        border-color: #ffffff; 
+    }
+    
+    .imgmodelo {
+        border-radius: 25px;
+        height: 100px;
+        margin: 16px; 
+    }
+    
+    .info-details {
+        display: block;
+        justify-content: center;
+    }
+    
+    
+    .nometxt,
+    .proftxt{
+        text-align:center;
+        margin-top: 8px;
+    }
+    .proftxt {
+        margin-top: 4px; 
+    }
+    .imgestrela {
+        width: 100px;
+        text-align:center;
+
+    }
+    
+    .infotxt p{
+        margin: 16px;
+        margin-bottom: 32px;
+    }
+
+    .form{
+        color: white;
+        
+    }
+    
+    ::placeholder {
+        text-align: left; 
+        color: black; 
+    }
+    
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+        border: 2px solid transparent; 
+        border-radius: 8px; 
+        padding-right: 128px; 
+        box-sizing: border-box; 
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); 
+     
+    }
+    
+    input:focus,
+    textarea:focus {
+        outline: none; 
+        border-color: #8a0520; 
+    }
+    
+    input[type="submit"] {
+        border-radius: 25px;
+        padding: 12px 25px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); 
+        transition: transform 0.3s, box-shadow 0.3s; 
+    }
+    
+    input[type="submit"]:hover {
+        transform: scale(1.05); 
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5); 
+        border-color: #ffffff; 
+        background-color: #8a0520;
+        color: white;
+    }
+    .titcontato2{
+        padding-top: 25px;
+        font-size: 25px;
+        text-align: center;
+        margin: 36px;
+        color: white;
+    }
+    .imgsocial{
+        height: 50px;
+        margin: 16px 8px;
+    }
+    .imgsocial1{
+        height: 50px;
+        margin: 16px 8px;
+    }
+    .imgsocial2{
+        height: 50px;
+        margin: 16px 8px;
+    }
+    .container {
+        display: block;
+        align-itens: center;
+        text-align:center;
+        justify-content: center; /* Distribui os itens ao longo do eixo principal com espaçamento uniforme */
+    }
+    
+    
+    .social-container {
+        flex: 1;
+        margin: 0 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centraliza as caixas horizontalmente */
+    }
+    
+    .social-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        border-radius: 25px; /* Adiciona bordas arredondadas */
+        border: 1px solid #FFFFFF; /* Adiciona uma borda */
+        transition: background-color 0.3s, border-color 0.3s; /* Adiciona transição suave */
+        height: 60px; /* Defina a altura desejada */
+        width: 400px; /* Defina a largura desejada */
+        transition: transform 0.3s; /* Adiciona uma transição suave */
+    
+    }
+    
+    .social-item:hover  {
+        transform: scale(1.05); 
+        /* Troca a imagem ao passar o mouse */
+    }
+    
+    
+    .social-item a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #FFFFFF;
+       /* Adiciona um espaçamento entre a imagem e o texto */
+    }
+    
+    /* Estilo padrão da imagem */
+    .imgsocial, .imgsocial1, .imgsocial2 {
+        height: 30px;
+        margin-right: 10px; /* Ajusta o espaçamento entre a imagem e o texto */
+        transition: transform 0.3s; /* Adiciona uma transição suave */
+    }
+    
+    /* Estilo da imagem ao passar o mouse sobre o link */
+    .social-item:hover .imgsocial {
+        content: url('./imagens/instagram color.png');
+        transform: scale(1.25); 
+        /* Troca a imagem ao passar o mouse */
+    }
+    
+    .social-item:hover .imgsocial1 {
+        content: url('./imagens/whatsapp color.png');
+        transform: scale(1.25); 
+        /* Troca a imagem ao passar o mouse */
+    }
+    .social-item:hover .imgsocial2 {
+        content: url('./imagens/telefone color.png');
+        transform: scale(1.25); 
+        /* Troca a imagem ao passar o mouse */
+    }
+    footer img,
+    footer .paragrafo {
+        display: none; /* Oculta tanto as imagens quanto o texto do título */
+    }
+
+    footer {
+        background-color: #8a0520;
+        display: flex;
+        gap: 20px;
+        padding: 48px 60px;
+        border-radius: 25px;
+        align-itens:center;
+    }
+
+    .titulo {
+        color: #ffffff;
+    }
+
+    footer a {
+        color: #ffffff;
+        display: block;
+        margin-bottom: 16px;
+        text-decoration: none;
+        max-width: 350px;
+        transition: transform 0.3s; /* Adiciona uma transição suave */
+    }
+
+    footer a:hover {
+        transform: scale(1.05);
+        /* Troca a imagem ao passar o mouse */
+    }
+
+    footer p {
+        color: #ffffff;
+        display: block;
+        margin-bottom: 16px;
+        text-decoration: none;
+        max-width: 350px;
+    }
+}
+
