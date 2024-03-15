@@ -237,7 +237,7 @@ header img{
     height: 450px;
     align-itens: center;
     margin: 32px;
-    margin-left:84px;
+    margin-left:124px;
     text-align: center;
     border-radius: 50px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
@@ -532,33 +532,10 @@ footer p{
     
 }
 
-.menu-sanduiche {
-    display: none; /* Inicialmente oculto */
-    cursor: pointer;
-}
-
-.menu-sanduiche .sanduiche {
-    width: 30px;
-    height: 3px;
-    background-color: #FFFFFF;
-    margin: 6px 0;
-    transition: transform 0.3s;
-}
-
-.menu-sanduiche.aberto .sanduiche:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-.menu-sanduiche.aberto .sanduiche:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-sanduiche.aberto .sanduiche:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
-}
 
 
-@media (max-width: 450px){
+ @media (max-width: 450px){
+    
     header {
         background-color:#8a0520;
         display:flex;
@@ -587,7 +564,7 @@ footer p{
         margin-left: 50px;
         padding: 24px;
         text-decoration: none;
-        position: relative; /* Adiciona posicionamento relativo */
+       position: relative; /* Adiciona posicionamento relativo */
     }
     
     /* Estilos para a linha sob os links no header, exceto .botvenha */
@@ -629,64 +606,30 @@ footer p{
         transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
     
     }
-
-    header {
-        position: relative; /* Necessário para posicionar o menu sanduíche */
-    }
-
-    .menu-sanduiche {
-        display: block; /* Exibir apenas em telas pequenas */
-        position: absolute;
-        top: 15px;
-        right: 15px;
-    }
-
-    .menu-links {
-        display: none; /* Inicialmente oculto */
-        position: absolute;
-        top: 80px;
-        right: 0;
+    
+    #sobre {
+        flex-direction: column; /* Altera a direção do flex container para coluna */
+        align-items: center;
+        justify-content: center;
+        text-align: center;
         background-color: #8a0520;
-        border-radius: 0 0 10px 10px;
-        padding: 10px 20px;
-    }
-
-    .menu-links a {
-        display: block;
-        color: #FFFFFF;
-        font-weight: 600;
-        margin-bottom: 10px;
-        text-decoration: none;
-    }
-
-    .menu-sanduiche.aberto + .menu-links {
-        display: block; /* Exibir quando o menu sanduíche estiver aberto */
+        padding-top: 32px;
+        border-radius: 0px 0px 10px 10px;
     }
     
-    #sobre{
-        display:block;
-        align-items: center;
-        text-align:center;
-        justify-content:center;
-        padding: 20px 100px 0px 80px;
-        background-color:#8a0520;
-        border-radius: 0px 0px 10px 10px ;
-    }
-    #sobre h3{
+    #sobre h3 {
         font-size: 30px;
     }
-    #sobre p{
-        font-size: 20px;
-
-    }
-    .imgprinc{
-        height: 340px;
-        margin-bottom:0;
-        align-items: center;
-
     
+    #sobre p {
+        font-size: 20px;
     }
-
+    
+    .imgprinc {
+        height: 320px;
+        margin-bottom: 0;
+    }
+    
     #servicos{
         flex-direction: column; /* Altera a direção do flex container para coluna */
         background-color: black;
