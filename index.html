@@ -17,19 +17,28 @@
 </head>
 <body>
     <div class="back1">
-                    <header>
-                        <a href="./index.html">
-                            <img src="./imagens/Logotipo Principal 2.jpg" height="75">
-                        </a>
-                        
-                        <nav class="menu-links">
-                            <a href="#sobre">Sobre</a>
-                            <a href="#servicos">Serviços</a>
-                            <a href="#clientes">Clientes</a>
-                            <a href="#contato">Contato</a>
-                            <a class="botvenha" href="">Faça seu orçamento</a>
-                        </nav>
-                    </header> 
+        <header>
+            <div class="menu-icon" onclick="toggleMenu()">
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+            </div>
+            
+            <a href="./index.html">
+              <img src="./imagens/Logotipo Principal 2.jpg" height="75">
+            </a>
+          </header>
+          
+          <div class="menu-content" id="menuContent">
+            <nav class="menu-links">
+              <a href="#sobre">Sobre</a>
+              <a href="#servicos">Serviços</a>
+              <a href="#clientes">Clientes</a>
+              <a href="#contato">Contato</a>
+              <a class="botvenha" href="">Faça seu orçamento</a>
+            </nav>
+          </div>
+          
                     
                     <main>
                         <section id="sobre">
@@ -292,6 +301,16 @@
         </a>
     </div>
     
+    <script>
+        function toggleMenu() {
+          var menuContent = document.getElementById("menuContent");
+          if (menuContent.style.display === "none" || menuContent.style.display === "") {
+            menuContent.style.display = "block";
+          } else {
+            menuContent.style.display = "none";
+          }
+        }
+        </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();

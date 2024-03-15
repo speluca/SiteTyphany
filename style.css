@@ -536,76 +536,77 @@ footer p{
 
  @media (max-width: 450px){
     
+    
     header {
         background-color:#8a0520;
         display:flex;
         align-items: center;
         border-radius: 10px 10px 0px 0px ;
-    }
-    body {
+      }
+      
+      body {
         overflow-x: hidden;
-    }
-        
-     /*color clara: #d99f918*/
-    
-     header nav a {
-        color: #FFFFFF;
+      }
+      
+      .menu-icon {
+        width: 40px;
+        height: 30px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: 20px; /* Adiciona margem à esquerda para separar o ícone do logo */
+      }
+      
+      .bar {
+        width: 100%;
+        height: 5px;
+        background-color: white;
+      }
+      
+      .menu-content {
+        display: block;
+        align-itens: center;
+        text-align:center;
+        justify-content: center;
+        position: absolute;
+        background-color: #f9f9f9;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        padding: 20px;
+      }
+      
+      .menu-links {
+        list-style-type: none;
+        padding: 0;
+      }
+      
+      .menu-links a {
+        color: black;
         font-weight: 600;
-        margin-left: 50px;
-        padding: 24px;
+        margin-bottom: 10px;
+        display: block;
         text-decoration: none;
-        position: relative; /* Adiciona posicionamento relativo */
-    }
-    
-    /* Estilos para todos os links no header, exceto .botvenha */
-    header nav a:not(.botvenha) {
-        color: #FFFFFF;
-        font-weight: 600;
-        margin-left: 50px;
-        padding: 24px;
+      }
+      
+      .menu-links a:hover {
+        color: #8a0520; /* Altera a cor do texto ao passar o mouse */
+      }
+      
+      .botvenha {
+        background-color: #8a0520;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        display: block;
+        text-align: center;
         text-decoration: none;
-       position: relative; /* Adiciona posicionamento relativo */
-    }
-    
-    /* Estilos para a linha sob os links no header, exceto .botvenha */
-    header nav a:not(.botvenha)::after {
-        content: '';
-        position: absolute; /* Adiciona posicionamento absoluto */
-        bottom: -5px; /* Posiciona a linha abaixo do texto */
-        left: 0; /* Alinha a linha com o início do texto */
-        width: 0; /* Inicia a largura como 0 */
-        height: 2px; /* Define a altura da linha */
-        background-color: #FFFFFF; /* Cor da linha */
-        transition: width 0.3s; /* Adiciona uma transição para animação suave */
-    }
-    
-    /* Estilos para quando o mouse passa sobre os links no header, exceto .botvenha */
-    header nav a:not(.botvenha):hover::after {
-        width: 100%; /* Aumenta a largura da linha quando o mouse passa sobre o link */
-    }
-    
-    header img{
-        margin-top: 4px;
-        margin-bottom: 4px;
-        margin-left: 32px;
-    
-       
-    }
-    .botvenha{
-        margin-left: 300px;
-        background-color: #ffffff;
-        border-radius: 50px;
-        padding: 16px;
-        color:black;
-        transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; /* Adiciona uma transição suave */
-    
-    }
-    .botvenha:hover{
-        border-color: #8a0520; /* Altera a cor da borda */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Aumenta a sombra */
-        transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
-    
-    }
+      }
+      
+      .botvenha:hover {
+        background-color: #FFFFFF;
+        color: #8a0520; /* Altera a cor do texto ao passar o mouse */
+      }
+      
     
     #sobre {
         flex-direction: column; /* Altera a direção do flex container para coluna */
