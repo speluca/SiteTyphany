@@ -1,0 +1,95 @@
+---
+import Logo from "./Logo.astro";
+import { contato, instagramLink, msgOrcamento, nav, whatsappLink } from "../data/site";
+const paginas: Record<string, string> = { "#verdades": "03", "#carta": "04", "#servicos": "05", "#metodo": "06", "#contato": "09" };
+---
+
+<header
+  id="topo"
+  data-solid="false"
+  data-menu="fechado"
+  class="group/h fixed inset-x-0 top-0 z-50 text-creme transition-[background-color,color,box-shadow] duration-500 data-[solid=true]:bg-creme/92 data-[solid=true]:text-tinta data-[solid=true]:shadow-[0_1px_0_rgb(27_18_20/0.1)] data-[solid=true]:backdrop-blur-md"
+>
+  <div class="mx-auto flex h-18 max-w-[90rem] items-center justify-between gap-6 px-5 sm:px-8">
+    <a href="#" class="transition-colors group-data-[solid=true]/h:text-vinho" aria-label="True Marketing, voltar à capa">
+      <Logo class="w-[5.5rem]" decorativo />
+    </a>
+
+    <nav aria-label="Principal" class="hidden items-center gap-8 lg:flex">
+      {
+        nav.map((item) => (
+          <a href={item.href} class="eyebrow relative py-2 opacity-85 transition-opacity after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:opacity-100 hover:after:scale-x-100">
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href={whatsappLink(msgOrcamento)}
+        target="_blank"
+        rel="noopener"
+        class="btn !px-5 !py-3 bg-creme text-vinho hover:bg-rosa-claro group-data-[solid=true]/h:bg-vinho group-data-[solid=true]/h:text-creme group-data-[solid=true]/h:hover:bg-tinta"
+      >
+        Orçamento
+      </a>
+    </nav>
+
+    <button type="button" class="group relative grid size-11 place-items-center lg:hidden" aria-controls="menu-mobile" aria-expanded="false" aria-label="Abrir menu" data-menu-toggle>
+      <span class="absolute h-px w-6 -translate-y-1 bg-current transition-transform duration-300 group-aria-expanded:translate-y-0 group-aria-expanded:rotate-45"></span>
+      <span class="absolute h-px w-6 translate-y-1 bg-current transition-transform duration-300 group-aria-expanded:translate-y-0 group-aria-expanded:-rotate-45"></span>
+    </button>
+  </div>
+
+  <div id="menu-mobile" class="fixed inset-0 -z-10 flex flex-col overflow-y-auto bg-vinho px-5 pb-8 pt-24 text-creme sm:px-8 lg:hidden" hidden>
+    <div class="grao pointer-events-none absolute inset-0 opacity-60" aria-hidden="true"></div>
+    <p class="eyebrow relative text-rosa-claro">Nesta edição</p>
+    <nav aria-label="Menu" class="relative mt-4">
+      <ol>
+        {
+          nav.map((item, i) => (
+            <li class="menu-item border-b border-creme/15" style={`--d:${80 + i * 60}ms`}>
+              <a href={item.href} class="flex items-baseline justify-between gap-4 py-4" data-menu-link>
+                <span class="display text-[2.6rem]">{item.label}</span>
+                <span class="eyebrow text-rosa-claro/80">p. {paginas[item.href]}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+
+    <div class="menu-item relative mt-auto pt-10" style="--d:420ms">
+      <a href={whatsappLink(msgOrcamento)} target="_blank" rel="noopener" class="btn-creme w-full">Solicitar orçamento <span aria-hidden="true">→</span></a>
+      <div class="mt-6 flex items-center justify-between text-sm text-creme/75">
+        <a href={whatsappLink()} target="_blank" rel="noopener">{contato.whatsappExibicao}</a>
+        <a href={instagramLink} target="_blank" rel="noopener">@{contato.instagram}</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById("topo")!;
+  const toggle = header.querySelector<HTMLButtonElement>("[data-menu-toggle]")!;
+  const menu = document.getElementById("menu-mobile")!;
+  const capa = document.getElementById("capa");
+
+  const aberto = () => toggle.getAttribute("aria-expanded") === "true";
+  const syncSolid = () => {
+    const limite = capa ? capa.offsetHeight - 80 : 24;
+    header.dataset.menu = aberto() ? "aberto" : "fechado";
+    header.dataset.solid = String(window.scrollY > limite && !aberto());
+  };
+  const setOpen = (open: boolean) => {
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+    menu.hidden = !open;
+    document.documentElement.style.overflow = open ? "hidden" : "";
+    syncSolid();
+  };
+
+  toggle.addEventListener("click", () => setOpen(!aberto()));
+  menu.querySelectorAll("[data-menu-link]").forEach((a) => a.addEventListener("click", () => setOpen(false)));
+  document.addEventListener("keydown", (e) => e.key === "Escape" && setOpen(false));
+  window.addEventListener("scroll", syncSolid, { passive: true });
+  syncSolid();
+</script>

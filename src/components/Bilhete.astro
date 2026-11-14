@@ -1,0 +1,24 @@
+---
+import { verdades } from "../data/site";
+interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+---
+
+<article class:list={["grao relative bg-papel px-7 pb-8 pt-12 shadow-[0_30px_60px_-20px_rgb(40_0_10/0.55)] sm:px-9", className]}>
+  <svg class="absolute -top-7 left-[62%] h-20 w-8 rotate-6 text-[#b9a27c]" viewBox="0 0 32 80" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true">
+    <path d="M10 22V62a6 6 0 0 0 12 0V12a9 9 0 0 0-18 0v54a12 12 0 0 0 24 0V24" />
+  </svg>
+  <h3 class="display text-center text-[1.75rem] uppercase leading-[0.95] text-vinho sm:text-[2rem]">Verdades cruéis demais sobre marketing</h3>
+  <ul class="mt-6 text-[0.98rem]">
+    {
+      verdades.map((v, i) => (
+        <li class="flex items-baseline gap-3 border-t border-tinta/12 py-3">
+          <span class="font-display text-sm italic text-vinho">{i + 1}.</span>
+          {v}
+        </li>
+      ))
+    }
+  </ul>
+</article>

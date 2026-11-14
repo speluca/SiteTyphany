@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+/* ── True Marketing · tokens da identidade (Canva "ID True") ── */
+@theme {
+  --color-vinho: #8a0520;
+  --color-vinho-escuro: #5c0315;
+  --color-rubi: #d10046;
+  --color-laranja: #fd3d00;
+  --color-rosa: #f787b5;
+  --color-rosa-claro: #ffbde4;
+  --color-rosa-papel: #fde6f1;
+  --color-creme: #f7efe8;
+  --color-papel: #fbf7f2;
+  --color-areia: #ece0d4;
+  --color-tinta: #1b1214;
+
+  --font-display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --font-sans: "Jost", "Futura", "Avenir Next", system-ui, sans-serif;
+  --font-assinatura: "Mrs Saint Delafield", "Snell Roundhand", cursive;
+
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-marquee-lento: marquee 60s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+/* telas baixas (notebooks com pouca altura útil) */
+@custom-variant baixa (@media (max-height: 760px));
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-creme font-sans text-tinta antialiased;
+  }
+  ::selection {
+    @apply bg-vinho text-creme;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-rubi;
+  }
+}
+
+/* legenda espaçada em caixa alta — assinatura dos posts */
+@utility eyebrow {
+  @apply font-sans text-[0.7rem] font-medium uppercase tracking-[0.3em];
+}
+@utility display {
+  @apply font-display font-normal leading-[0.92] tracking-[-0.015em];
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-3 px-7 py-4 text-[0.7rem] font-medium uppercase tracking-[0.28em] transition-colors duration-300;
+}
+@utility btn-vinho {
+  @apply btn bg-vinho text-creme hover:bg-tinta;
+}
+@utility btn-creme {
+  @apply btn bg-creme text-vinho hover:bg-rosa-claro;
+}
+@utility btn-linha {
+  @apply btn border border-current hover:border-tinta hover:bg-tinta hover:text-creme;
+}
+/* padrão de bolinhas da paleta ("Parttern", página 10 do Canva) */
+@utility bolinhas {
+  background-image: radial-gradient(color-mix(in oklab, var(--color-vinho) 28%, transparent) 1.1px, transparent 1.5px);
+  background-size: 16px 16px;
+}
+@utility bolinhas-creme {
+  background-image: radial-gradient(color-mix(in oklab, var(--color-creme) 22%, transparent) 1.1px, transparent 1.5px);
+  background-size: 16px 16px;
+}
+/* grão sutil de papel */
+@utility grao {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.2 0 0 0 0 0.15 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* área do bloco vinho da colagem (retângulo 78% × 82%, top 1.5rem, girado 3°), em unidades do container
+   (cqw/cqh) — vale para qualquer altura da colagem. Usado para pintar o carimbo de creme por cima do bloco. */
+.recorte-bloco {
+  clip-path: polygon(
+    calc(22.0534cqw + 2.1459cqh) calc(1.5rem + 0.0562cqh - 2.0413cqw),
+    calc(99.9466cqw + 2.1459cqh) calc(1.5rem + 0.0562cqh + 2.0413cqw),
+    calc(99.9466cqw - 2.1459cqh) calc(1.5rem + 81.9438cqh + 2.0413cqw),
+    calc(22.0534cqw - 2.1459cqh) calc(1.5rem + 81.9438cqh - 2.0413cqw)
+  );
+}
+
+/* película: furos de tracionamento em cima e embaixo */
+.pelicula {
+  background-image:
+    linear-gradient(90deg, rgb(247 239 232 / 0.85) 0 9px, transparent 9px 22px),
+    linear-gradient(90deg, rgb(247 239 232 / 0.85) 0 9px, transparent 9px 22px);
+  background-size: 22px 7px, 22px 7px;
+  background-position: 6px 10px, 6px calc(100% - 10px);
+  background-repeat: repeat-x;
+}
+
+/* revelação suave ao rolar */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 1s cubic-bezier(0.2, 0.7, 0.2, 1), transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: var(--d, 0ms);
+  }
+  [data-reveal].is-in {
+    opacity: 1;
+    transform: var(--t, none);
+  }
+  /* capa: título sobe por trás da Tiphany */
+  #menu-mobile:not([hidden]) .menu-item {
+    animation: menu-entra 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
+  @keyframes menu-entra {
+    from { opacity: 0; transform: translateY(18px); }
+  }
+  .capa-titulo {
+    animation: capa-sobe 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .capa-foto {
+    animation: capa-foto 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s both;
+  }
+  @keyframes capa-sobe {
+    from { opacity: 0; transform: translateY(8%); }
+  }
+  @keyframes capa-foto {
+    from { opacity: 0; transform: translateY(4%) scale(1.02); }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-marquee, .animate-marquee-lento { animation: none; }
+}

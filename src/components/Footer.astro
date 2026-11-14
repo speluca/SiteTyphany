@@ -1,0 +1,76 @@
+---
+import { contato, instagramLink, msgOrcamento, nestaEdicao, pilares, whatsappLink } from "../data/site";
+const ano = new Date().getFullYear();
+const sumario = [{ pagina: "01", titulo: "Capa", href: "#" }, ...nestaEdicao, { pagina: "09", titulo: "Sua marca na próxima capa", href: "#contato" }];
+const expediente = [
+  ["Fundadora & direção criativa", "Tiphany"],
+  ["Especialidade", "Marketing para marcas de moda"],
+  ["Redação", "Fortaleza, CE · atendimento online"],
+  ["Edição", `Nº 01 · ${ano}`],
+];
+---
+
+<footer class="relative overflow-hidden bg-tinta text-creme">
+  <!-- encerramento -->
+  <div class="mx-auto flex max-w-[90rem] flex-col justify-between gap-8 border-b border-creme/15 px-5 pb-14 pt-20 sm:px-8 md:flex-row md:items-end">
+    <div>
+      <p class="eyebrow text-rosa">Fim da edição Nº 01</p>
+      <p class="display mt-5 text-[clamp(2.6rem,6vw,5.5rem)]">Até a <em class="text-rosa">próxima capa.</em></p>
+    </div>
+    <a href={whatsappLink(msgOrcamento)} target="_blank" rel="noopener" class="btn-creme self-start md:self-auto">
+      Falar com a True <span aria-hidden="true">→</span>
+    </a>
+  </div>
+
+  <div class="mx-auto grid max-w-[90rem] gap-14 px-5 py-16 sm:px-8 lg:grid-cols-12 lg:gap-10">
+    <!-- sumário -->
+    <nav aria-label="Sumário" class="lg:col-span-5">
+      <p class="eyebrow text-creme/45">Sumário</p>
+      <ol class="mt-6">
+        {
+          sumario.map((s) => (
+            <li>
+              <a href={s.href} class="group flex items-baseline gap-5 border-b border-creme/10 py-2.5 transition-colors hover:text-rosa">
+                <span class="eyebrow w-10 shrink-0 text-creme/40 group-hover:text-rosa">p.{s.pagina}</span>
+                <span class="font-display text-lg">{s.titulo}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+
+    <!-- expediente -->
+    <div class="lg:col-span-4 lg:col-start-7">
+      <p class="eyebrow text-creme/45">Expediente</p>
+      <dl class="mt-6 space-y-4 border border-creme/15 p-6">
+        {
+          expediente.map(([k, v]) => (
+            <div>
+              <dt class="eyebrow text-[0.6rem] text-rosa/80">{k}</dt>
+              <dd class="mt-0.5 font-display text-lg">{v}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <!-- contato -->
+    <div class="lg:col-span-2 lg:col-start-11">
+      <p class="eyebrow text-creme/45">Fale com a redação</p>
+      <ul class="mt-6 space-y-4 text-sm text-creme/80">
+        <li><span class="eyebrow block text-[0.6rem] text-rosa/80">WhatsApp</span><a href={whatsappLink()} target="_blank" rel="noopener" class="hover:text-rosa">{contato.whatsappExibicao}</a></li>
+        <li><span class="eyebrow block text-[0.6rem] text-rosa/80">E-mail</span><a href={`mailto:${contato.email}`} class="break-all hover:text-rosa">{contato.email}</a></li>
+        <li><span class="eyebrow block text-[0.6rem] text-rosa/80">Instagram</span><a href={instagramLink} target="_blank" rel="noopener" class="hover:text-rosa">@{contato.instagram}</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- faixa final -->
+  <div class="relative z-10 mx-auto flex max-w-[90rem] flex-col gap-2 border-t border-creme/10 px-5 pb-24 pt-6 text-xs text-creme/45 sm:pb-6 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+    <p>© {ano} True Marketing. Todos os direitos reservados.</p>
+    <p class="eyebrow !text-[0.62rem] text-rosa/70">{pilares.join(" ✦ ")}</p>
+    <a href="#" class="eyebrow !text-[0.62rem] hover:text-creme sm:mr-20">Voltar à capa ↑</a>
+  </div>
+
+</footer>

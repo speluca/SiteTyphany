@@ -1,0 +1,801 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Logo from "../components/Logo.astro";
+import Carimbo from "../components/Carimbo.astro";
+import Bilhete from "../components/Bilhete.astro";
+import Lettering from "../assets/brand/criar-comunicar-inovar.svg";
+import Masthead from "../assets/brand/true.svg";
+import {
+  clientes,
+  contato,
+  crencas,
+  depoimentos,
+  fichaTecnica,
+  instagramLink,
+  metodo,
+  msgOrcamento,
+  nestaEdicao,
+  servicos,
+  whatsappLink,
+} from "../data/site";
+
+import capa from "../assets/fotos/tiphany-capa.png";
+import carta from "../assets/fotos/tiphany-carta.jpg";
+import celular from "../assets/fotos/tiphany-celular.jpg";
+import estudio from "../assets/fotos/tiphany-estudio.jpg";
+import corpo from "../assets/fotos/tiphany-corpo.jpg";
+import bast2 from "../assets/fotos/bastidores-2.jpg";
+import bast1 from "../assets/fotos/bastidores-1.jpg";
+import bast3 from "../assets/fotos/bastidores-3.jpg";
+import digital from "../assets/fotos/tiphany-digital.jpg";
+import ecobag from "../assets/universo/ecobag.jpg";
+import modelo from "../assets/fotos/modelo.jpg";
+import camiseta from "../assets/universo/camiseta.jpg";
+import canecas from "../assets/universo/canecas.jpg";
+import necessaire from "../assets/universo/necessaire.jpg";
+import garrafa from "../assets/universo/garrafa.jpg";
+
+const faixa = ["Criar", "Comunicar", "Inovar", "Estratégia", "Conteúdo", "Produção"];
+
+const tiraBastidores = [
+  { src: estudio, alt: "Tiphany no estúdio, entre um take e outro", marca: true },
+  { src: bast2, alt: "Ensaio teen com direção da True" },
+  { src: bast1, alt: "Captação de foto com celular durante shooting infantil" },
+  { src: modelo, alt: "Retrato para mídia kit", marca: true },
+  { src: corpo, alt: "Ensaio de posicionamento pessoal" },
+  { src: bast3, alt: "Ajuste de figurino nos bastidores" },
+];
+const tiraIdentidade = [
+  { src: camiseta, alt: "Camisetas da equipe com o lettering Criar, Comunicar, Inovar" },
+  { src: canecas, alt: "Canecas com o logo True Marketing", marca: true },
+  { src: necessaire, alt: "Nécessaire personalizada para clientes" },
+  { src: digital, alt: "Tiphany com tablet e celular" },
+  { src: garrafa, alt: "Garrafa com o logo True Marketing" },
+  { src: ecobag, alt: "Ecobag com o logo True Marketing" },
+];
+
+// quebra o depoimento em balões de mensagem (até ~2 frases cada)
+const baloes = (texto: string) => {
+  const frases = texto.match(/[^.!?]+[.!?]+["”]?/g) ?? [texto];
+  const out: string[] = [];
+  for (const f of frases.map((x) => x.trim())) {
+    const ult = out[out.length - 1];
+    if (ult && ult.length + f.length < 150) out[out.length - 1] = `${ult} ${f}`;
+    else out.push(f);
+  }
+  return out;
+};
+const respostas = ["Que alegria ler isso! Seguimos juntas 🤍", "Você merece cada oportunidade! ✨", "A gente que agradece pela confiança 🤍"];
+const iniciais = (nome: string) => nome.split(" ").map((p) => p[0]).join("").slice(0, 2).toUpperCase();
+---
+
+<Layout>
+  <Header />
+
+  <main id="conteudo">
+    <!-- ══════════════ CAPA ══════════════ -->
+    <section id="capa" class="relative isolate flex min-h-[max(40rem,100svh)] flex-col baixa:min-h-[max(36rem,100svh)] overflow-hidden bg-vinho text-creme">
+      <div class="grao pointer-events-none absolute inset-0 -z-10 opacity-60" aria-hidden="true"></div>
+
+      <!-- título da revista, atrás da Tiphany -->
+      <div class="relative z-0 mx-auto mt-[5.5rem] w-[min(100%-2rem,calc(100svh*1.1),84rem)] baixa:mt-[4.75rem] baixa:w-[min(100%-2rem,calc(100svh*0.9))]">
+        <Masthead class="capa-titulo block h-auto w-full text-creme" aria-hidden="true" />
+        <p class="eyebrow mt-3 flex justify-between text-[0.62rem] text-rosa-claro sm:text-[0.7rem]">
+          <span>Nº 01 · Fortaleza</span><span>Edição 2026</span>
+        </p>
+      </div>
+
+      <!-- capa -->
+      <div class="capa-foto absolute bottom-0 left-1/2 z-10 h-[74%] -translate-x-[50%] sm:h-[80%] lg:h-[86%]">
+        <Image
+          src={capa}
+          alt="Tiphany, fundadora da True Marketing, sorrindo em ensaio de estúdio"
+          widths={[480, 720]}
+          sizes="(min-width: 1024px) 560px, 80vw"
+          loading="eager"
+          fetchpriority="high"
+          class="h-full w-auto max-w-none object-contain object-bottom drop-shadow-[0_30px_40px_rgb(40_0_10/0.35)]"
+        />
+      </div>
+
+      <!-- chamadas de capa -->
+      <div class="relative z-20 mx-auto flex w-full max-w-[90rem] flex-1 items-end px-5 pb-10 pt-16 sm:px-8 sm:pb-14 lg:pb-20 lg:pt-20 baixa:pb-8 baixa:pt-10 lg:baixa:pb-20 lg:baixa:pt-8">
+        <div class="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-vinho via-vinho/70 to-transparent lg:hidden" aria-hidden="true"></div>
+
+        <div class="relative w-full lg:grid lg:grid-cols-12 lg:items-start">
+          <div class="lg:col-span-4">
+            <p class="eyebrow text-rosa-claro">Marketing para marcas de moda</p>
+            <h1 class="display mt-4 text-[clamp(2.5rem,4.6vw,4.2rem)] baixa:mt-3 baixa:text-[clamp(2.3rem,3.8vw,3.3rem)]">
+              Marca forte<br />tem <em class="text-rosa-claro">propósito.</em>
+            </h1>
+            <p class="mt-5 max-w-xs text-[0.95rem] leading-relaxed text-creme/80 baixa:mt-3 baixa:text-sm">
+              Estratégia, conteúdo e produção para marcas que querem ser lembradas, não só vistas.
+            </p>
+            <a href={whatsappLink(msgOrcamento)} target="_blank" rel="noopener" class="btn-creme pointer-events-auto mt-7 baixa:mt-5 baixa:py-3">
+              Quero ser capa <span aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <nav aria-label="Nesta edição" class="hidden lg:col-span-3 lg:col-start-10 lg:block">
+            <p class="eyebrow border-b border-creme/30 pb-3 text-rosa-claro">Nesta edição</p>
+            <ol>
+              {
+                nestaEdicao.map((c) => (
+                  <li>
+                    <a href={c.href} class="group flex items-baseline gap-4 border-b border-creme/15 py-2.5 transition-colors baixa:py-1.5 hover:text-rosa-claro">
+                      <span class="eyebrow shrink-0 text-creme/50 group-hover:text-rosa-claro">p.{c.pagina}</span>
+                      <span class="font-display text-[1.05rem] leading-tight">{c.titulo}</span>
+                    </a>
+                  </li>
+                ))
+              }
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ FAIXA ══════════════ -->
+    <div class="bolinhas overflow-hidden border-y border-vinho/20 bg-rosa-claro py-5 text-vinho" aria-hidden="true">
+      <div class="flex w-max animate-marquee items-center gap-8 whitespace-nowrap">
+        {
+          [0, 1, 2, 3].map(() =>
+            faixa.map((p, i) => (
+              <span class="flex items-center gap-8">
+                <span class:list={["font-display text-3xl uppercase sm:text-4xl", i % 2 && "italic normal-case"]}>{p}</span>
+                <span class="text-xl">✦</span>
+              </span>
+            )),
+          )
+        }
+      </div>
+    </div>
+
+    <!-- ══════════════ p.03 VERDADES ══════════════ -->
+    <section id="verdades" class="relative overflow-hidden bg-creme py-24 sm:py-32">
+      <div class="mx-auto grid max-w-[90rem] items-center gap-20 px-5 sm:px-8 lg:grid-cols-12 lg:gap-10">
+        <!-- manifesto -->
+        <div class="lg:col-span-6">
+          <p class="eyebrow text-vinho" data-reveal>p. 03 — Manifesto</p>
+          <h2 class="display mt-6 text-[clamp(2.8rem,5.2vw,4.8rem)]" data-reveal>
+            Ser social media não é <em class="text-vinho">só fazer um post.</em>
+          </h2>
+          <p class="mt-7 max-w-md text-lg leading-relaxed text-tinta/70" data-reveal>
+            Marca se constrói com visão, constância e uma comunicação que tem a cara de quem você é. O resto é barulho no feed.
+          </p>
+
+          <div class="mt-14 max-w-lg" data-reveal>
+            <ul class="border-t border-tinta/12">
+              {
+                crencas.map((c) => (
+                  <li class="border-b border-tinta/12 py-4">
+                    <span class="font-display text-[clamp(1.4rem,2.1vw,1.85rem)] leading-tight">
+                      {c[0]} <em class="text-vinho">{c[1]}</em>
+                    </span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+
+        <!-- colagem (celular) -->
+        <div class="-mx-5 mt-6 sm:hidden" aria-label="Verdades cruéis demais sobre marketing">
+          <div class="bolinhas-creme relative bg-vinho px-5 pb-10">
+            <div class="flex items-start justify-between">
+              <figure class="relative -mt-8 w-[54%] -rotate-[6deg] bg-papel p-2.5 pb-10 shadow-[0_20px_40px_-18px_rgb(20_0_5/0.6)]" data-reveal>
+                <span class="absolute -top-3 left-1/2 h-5 w-16 -translate-x-1/2 rotate-[4deg] bg-rosa-claro/80" aria-hidden="true"></span>
+                <Image src={celular} alt="Tiphany sorrindo com o celular na mão" widths={[320, 480]} sizes="55vw" class="aspect-[4/5] w-full object-cover object-top" />
+                <figcaption class="absolute inset-x-2.5 bottom-2.5 font-display text-base italic text-tinta/70">bastidor, sempre.</figcaption>
+              </figure>
+              <div class="pointer-events-none mr-1 mt-6 text-creme" aria-hidden="true"><Carimbo id="carimbo-m" class="relative size-28" /></div>
+            </div>
+            <Bilhete class="mt-10 rotate-[1.5deg]" />
+          </div>
+        </div>
+
+        <!-- colagem (tablet e desktop) -->
+        <div class="relative mx-auto hidden h-[40rem] w-full max-w-[34rem] [container-type:size] sm:block lg:col-span-6 lg:max-w-none" aria-label="Verdades cruéis demais sobre marketing">
+          <!-- fundo vinho -->
+          <div class="bolinhas-creme absolute right-0 top-6 h-[82%] w-[78%] rotate-[3deg] bg-vinho" aria-hidden="true"></div>
+
+          <!-- polaroid -->
+          <figure class="absolute left-0 top-0 w-[46%] max-w-[15rem] -rotate-[7deg] bg-papel p-3 pb-12 shadow-[0_20px_40px_-18px_rgb(40_0_10/0.5)]" data-reveal>
+            <span class="absolute -top-3 left-1/2 h-6 w-20 -translate-x-1/2 rotate-[4deg] bg-rosa-claro/80" aria-hidden="true"></span>
+            <Image src={celular} alt="Tiphany sorrindo com o celular na mão" widths={[320, 480]} sizes="15rem" class="aspect-[4/5] w-full object-cover object-top" />
+            <figcaption class="absolute inset-x-3 bottom-3 font-display text-lg italic text-tinta/70">bastidor, sempre.</figcaption>
+          </figure>
+
+          <!-- carimbo: vinho sobre o creme, creme sobre o bloco vinho -->
+          <div class="pointer-events-none absolute inset-0 text-vinho" aria-hidden="true"><Carimbo id="carimbo-a" /></div>
+          <div class="recorte-bloco pointer-events-none absolute inset-0 text-creme" aria-hidden="true"><Carimbo id="carimbo-b" /></div>
+
+          <!-- bilhete -->
+          <div class="absolute bottom-6 right-[4%] w-[78%] max-w-[23rem]" data-reveal style="--d:120ms">
+            <Bilhete class="rotate-[2deg]" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ p.04 CARTA ══════════════ -->
+    <section id="carta" class="grao relative overflow-hidden bg-papel pb-24 pt-14 sm:pb-32 sm:pt-20">
+      <div class="mx-auto max-w-[90rem] px-5 sm:px-8">
+        <!-- cabeçalho da página -->
+        <div class="eyebrow grid grid-cols-[1fr_auto_1fr] items-center gap-4 border-b border-tinta/20 pb-4 text-tinta/55">
+          <span>p. 04<span class="hidden sm:inline"> — Carta da fundadora</span></span>
+          <Logo variante="minusculo" class="w-14 text-vinho" decorativo />
+          <span class="text-right">Edição 2026</span>
+        </div>
+
+        <div class="mt-16 grid gap-20 lg:mt-20 lg:grid-cols-12 lg:gap-12">
+          <!-- foto em arco -->
+          <figure class="relative mx-auto w-full max-w-md lg:col-span-5 lg:max-w-none" data-reveal>
+            <div class="relative">
+              <div class="absolute inset-0 translate-x-4 translate-y-4 rounded-t-full border border-vinho sm:translate-x-6 sm:translate-y-6" aria-hidden="true"></div>
+              <Image
+                src={carta}
+                alt="Tiphany sentada, sorrindo, em ensaio de estúdio"
+                widths={[480, 750]}
+                sizes="(min-width:1024px) 36vw, 90vw"
+                class="relative aspect-[3/4] w-full rounded-t-full object-cover object-[50%_15%]"
+              />
+              <Lettering class="pointer-events-none absolute -bottom-12 -right-3 z-10 w-[64%] -rotate-[8deg] text-vinho drop-shadow-[0_2px_0_rgb(251_247_242/0.9)] sm:-right-8" aria-hidden="true" />
+            </div>
+            <figcaption class="mt-20 flex items-baseline justify-between gap-4 border-t border-tinta/15 pt-4">
+              <span class="eyebrow text-tinta/50">Fundadora & diretora criativa</span>
+              <span class="whitespace-nowrap font-display text-base italic text-tinta/50">ensaio 2025</span>
+            </figcaption>
+          </figure>
+
+          <!-- carta -->
+          <div class="lg:col-span-7 lg:pl-6">
+            <blockquote class="display text-[clamp(2.2rem,4.2vw,3.8rem)] italic text-vinho" data-reveal>
+              “Marketing de moda não é sobre postar mais. É sobre postar <span class="not-italic text-tinta">com verdade.</span>”
+            </blockquote>
+
+            <p class="mt-14 font-display text-3xl italic" data-reveal>Querida marca,</p>
+            <div class="mt-6 gap-10 text-[1.05rem] leading-[1.8] text-tinta/80 md:columns-2 [&>p+p]:mt-5" data-reveal>
+              <p>
+                <span class="float-left mr-3 mt-1.5 font-display text-[4.4rem] leading-[0.75] text-vinho">E</span>u comecei nos bastidores: entre provas de roupa,
+                sets de fotografia e coleções que precisavam virar conteúdo para ontem. Foi ali que entendi que o feed é só a vitrine. O que vende é a história por
+                trás dela.
+              </p>
+              <p>
+                A True nasceu para contar essa história. A gente planeja, vai para o set, grava, edita e acompanha cada resultado, com ética, cuidado e
+                proximidade, como uma extensão do seu time.
+              </p>
+              <p>Se a sua marca tem algo a dizer, a gente ajuda o mundo a ouvir.</p>
+            </div>
+
+            <div class="mt-10 flex flex-wrap items-end justify-between gap-10" data-reveal>
+              <div>
+                <p class="font-assinatura text-[4.2rem] leading-none text-vinho">Tiphany</p>
+                <p class="eyebrow mt-2 text-tinta/50">Com carinho, da redação da True</p>
+              </div>
+              <dl class="flex gap-8 sm:gap-10">
+                {
+                  fichaTecnica.map((f) => (
+                    <div class="flex flex-col-reverse">
+                      <dt class="eyebrow mt-1 text-[0.62rem] text-tinta/50">{f.rotulo}</dt>
+                      <dd class="font-display text-4xl text-vinho">{f.valor}</dd>
+                    </div>
+                  ))
+                }
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ p.05 SERVIÇOS ══════════════ -->
+    <section id="servicos" class="bolinhas-creme relative overflow-hidden bg-vinho pb-24 pt-24 text-creme sm:pb-32 sm:pt-32">
+      <div class="mx-auto max-w-[90rem] px-5 sm:px-8">
+        <div class="grid gap-8 lg:grid-cols-12 lg:items-end">
+          <div class="lg:col-span-8">
+            <p class="eyebrow text-rosa-claro" data-reveal>p. 05 — O que fazemos</p>
+            <h2 class="display mt-6 text-[clamp(2.8rem,6.4vw,6rem)]" data-reveal>
+              Conteúdo estratégico <em class="text-rosa-claro">também vende.</em>
+            </h2>
+          </div>
+          <p class="max-w-xs text-lg leading-relaxed text-creme/75 lg:col-span-4 lg:justify-self-end" data-reveal>
+            Escolha o look da sua marca. Cada serviço funciona sozinho ou combinado, como um bom guarda-roupa.
+          </p>
+        </div>
+      </div>
+
+      <!-- arara -->
+      <div class="relative mx-auto mt-16 max-w-[90rem] sm:mt-20">
+        <div class="pointer-events-none absolute inset-x-5 top-0 hidden h-3 rounded-full bg-linear-to-b from-[#e9dccb] via-[#b9a27c] to-[#7d6a4c] shadow-[0_6px_14px_rgb(20_0_5/0.45)] sm:inset-x-8 lg:block" aria-hidden="true"></div>
+
+        <ol data-carrossel="servicos" class="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-5 px-5 pb-8 pt-6 [scrollbar-width:none] sm:px-8 lg:grid lg:snap-none lg:grid-cols-5 lg:gap-5 lg:overflow-visible lg:pb-0 lg:pt-0">
+          {
+            servicos.map((s, i) => (
+              <li
+                class="etiqueta-pendurada group relative w-[78vw] max-w-[19rem] shrink-0 snap-center lg:w-auto lg:max-w-none"
+                style={`--cordao:${[2.5, 5, 1.75, 4.25, 3][i]}rem; --giro:${[-2, 1.5, -1, 2.2, -1.6][i]}deg`}
+              >
+                <!-- cordão -->
+                <span class="absolute left-1/2 top-0 hidden h-[calc(var(--cordao)+1.6rem)] w-px -translate-x-1/2 bg-[#d8c7ad] lg:block" aria-hidden="true"></span>
+
+                <article class="etiqueta relative h-full drop-shadow-[0_22px_24px_rgb(20_0_5/0.45)] origin-top transition-transform duration-700 ease-[cubic-bezier(.3,1.6,.5,1)] lg:mt-[var(--cordao)] lg:rotate-(--giro) lg:group-hover:rotate-0">
+                  <div class="grao relative flex h-full flex-col bg-papel px-5 pb-6 pt-11 text-tinta [clip-path:polygon(22%_0,78%_0,100%_7%,100%_100%,0_100%,0_7%)]">
+                    <span class="absolute left-1/2 top-4 size-3.5 -translate-x-1/2 rounded-full bg-vinho ring-2 ring-[#b9a27c]" aria-hidden="true"></span>
+                    <p class="eyebrow flex justify-between text-[0.62rem] text-vinho">
+                      <span>Look {String(i + 1).padStart(2, "0")}</span><span class="text-tinta/40">True</span>
+                    </p>
+                    <div class="mt-4 overflow-hidden">
+                      <Image
+                        src={s.foto}
+                        alt={s.legenda}
+                        widths={[320, 480]}
+                        sizes="(min-width:1024px) 17vw, 78vw"
+                        class="aspect-[4/3] w-full object-cover object-[50%_18%] grayscale-[60%] transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
+                      />
+                    </div>
+                    <h3 class="display mt-5 text-[1.7rem] leading-[1.02] lg:text-[clamp(1.45rem,1.9vw,1.9rem)]">{s.titulo}</h3>
+                    <p class="mt-3 text-[0.92rem] leading-relaxed text-tinta/70">{s.texto}</p>
+                    <ul class="mt-auto border-t border-dashed border-tinta/25 pt-4 text-[0.68rem] uppercase tracking-[0.18em] text-tinta/55">
+                      {s.tags.map((t) => <li class="py-0.5">— {t}</li>)}
+                    </ul>
+                  </div>
+                </article>
+              </li>
+            ))
+          }
+        </ol>
+        <div class="mt-4 flex items-center justify-center gap-5 lg:hidden" data-controles="servicos">
+          <button type="button" data-anterior aria-label="Anterior" class="grid size-11 place-items-center rounded-full border border-current/30 transition-colors hover:bg-current/10">←</button>
+          <div class="flex items-center gap-2" data-pontos></div>
+          <button type="button" data-proximo aria-label="Próximo" class="grid size-11 place-items-center rounded-full border border-current/30 transition-colors hover:bg-current/10">→</button>
+        </div>
+      </div>
+
+      <div class="mx-auto mt-16 flex max-w-[90rem] flex-col items-start justify-between gap-6 px-5 sm:flex-row sm:items-center sm:px-8 lg:mt-24" data-reveal>
+        <p class="font-display text-2xl italic text-creme/90 sm:text-3xl">Não sabe qual vestir? A gente monta o look com você.</p>
+        <a href={whatsappLink("Olá! Quero entender qual serviço da True faz mais sentido para a minha marca.")} target="_blank" rel="noopener" class="btn-creme shrink-0">
+          Montar meu plano <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ══════════════ p.06 MÉTODO ══════════════ -->
+    <section id="metodo" class="relative overflow-hidden bg-rosa-papel py-24 sm:py-32">
+      <div class="mx-auto max-w-[90rem] px-5 sm:px-8">
+        <div class="grid gap-8 lg:grid-cols-12 lg:items-end">
+          <div class="lg:col-span-8">
+            <p class="eyebrow text-vinho" data-reveal>p. 06 — O método em quatro atos</p>
+            <h2 class="display mt-6 text-[clamp(2.6rem,5.4vw,5rem)]" data-reveal>
+              Não é sobre estar presente. <em class="text-vinho">É sobre ser lembrada.</em>
+            </h2>
+          </div>
+          <p class="max-w-xs text-lg leading-relaxed text-tinta/70 lg:col-span-4 lg:justify-self-end" data-reveal>
+            O primeiro mês com a True, do jeito que ele acontece no nosso planner.
+          </p>
+        </div>
+
+        <!-- planner -->
+        <div class="relative mt-16 sm:mt-20" data-reveal>
+          <!-- anotações -->
+          <div class="pointer-events-none absolute -top-[4.5rem] left-4 z-10 hidden items-end gap-1 text-vinho lg:flex" aria-hidden="true">
+            <p class="-rotate-6 font-assinatura text-[2.6rem] leading-none">comece por aqui</p>
+            <svg class="mb-[-2.6rem] h-14 w-12" viewBox="0 0 48 56" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6c18 4 26 18 22 44" /><path d="M20 42l8 9 6-10" /></svg>
+          </div>
+          <p class="pointer-events-none absolute -bottom-14 right-6 hidden rotate-[-4deg] font-assinatura text-[2.6rem] leading-none text-vinho lg:block" aria-hidden="true">
+            resultado! ♡
+          </p>
+
+          <div class="grao relative bg-papel shadow-[0_40px_70px_-35px_rgb(92_3_21/0.55)]">
+            <!-- espiral -->
+            <div class="pointer-events-none absolute inset-x-8 -top-3 flex justify-between" aria-hidden="true">
+              {Array.from({ length: 22 }).map((_, k) => <span class:list={["h-7 w-2.5 rounded-full bg-linear-to-b from-[#d9d2c8] to-[#8f877c] shadow-sm", k > 13 && "hidden sm:block", k > 7 && "max-sm:hidden"]}></span>)}
+            </div>
+
+            <!-- cabeçalho -->
+            <div class="flex flex-wrap items-center justify-between gap-4 border-b-2 border-vinho px-6 pb-5 pt-10 sm:px-10">
+              <p class="font-display text-2xl italic sm:text-3xl">Planner editorial</p>
+              <p class="eyebrow text-tinta/50">Mês 01 com a True</p>
+              <Logo variante="minusculo" class="hidden w-16 text-vinho sm:block" decorativo />
+            </div>
+
+            <!-- semanas -->
+            <ol class="grid sm:grid-cols-2 lg:grid-cols-4">
+              {
+                metodo.map((m, i) => (
+                  <li class:list={["flex flex-col px-6 pb-10 pt-7 sm:px-8", i > 0 && "border-t border-tinta/12 sm:border-t-0", i % 2 === 1 && "sm:border-l sm:border-tinta/12", i > 1 && "sm:border-t lg:border-t-0", i === 2 && "lg:border-l lg:border-tinta/12"]}>
+                    <div class="flex items-baseline justify-between">
+                      <span class="eyebrow text-tinta/45">Semana 0{i + 1}</span>
+                      <span class="font-display text-4xl italic leading-none text-vinho/80">{m.ato}</span>
+                    </div>
+                    <h3 class="display mt-6 self-start bg-[linear-gradient(transparent_55%,var(--color-rosa-claro)_55%,var(--color-rosa-claro)_92%,transparent_92%)] px-1 text-[2rem] sm:text-[2.2rem]">{m.etapa}</h3>
+                    <p class="mt-4 leading-relaxed text-tinta/70">{m.texto}</p>
+                    <ul class="mt-6 space-y-2.5 border-t border-dashed border-tinta/20 pt-5">
+                      {m.entregas.map((e) => (
+                        <li class="flex items-center gap-3 text-[0.95rem]">
+                          <svg class="size-[1.1rem] shrink-0 text-vinho" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <rect x="1.5" y="1.5" width="17" height="17" rx="2" stroke="currentColor" stroke-opacity=".45" />
+                            <path d="M5 10.5l3.2 3.2L15.5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                          {e}
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ))
+              }
+            </ol>
+          </div>
+        </div>
+
+        <div class="mt-24 flex flex-col items-start gap-6 sm:flex-row sm:items-center" data-reveal>
+          <a href={whatsappLink("Olá! Quero começar o mês 01 com a True.")} target="_blank" rel="noopener" class="btn-vinho">
+            Começar meu mês 01 <span aria-hidden="true">→</span>
+          </a>
+          <p class="max-w-sm text-tinta/70">Uma conversa rápida para entender sua marca e montar o plano com você.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ p.07 BACKSTAGE ══════════════ -->
+    <section id="backstage" class="overflow-hidden bg-tinta py-24 text-creme sm:py-32" aria-labelledby="backstage-titulo">
+      <div class="mx-auto flex max-w-[90rem] flex-col justify-between gap-8 px-5 sm:px-8 md:flex-row md:items-end">
+        <div>
+          <p class="eyebrow text-rosa" data-reveal>p. 07 — Backstage</p>
+          <h2 id="backstage-titulo" class="display mt-6 text-[clamp(2.6rem,5.6vw,5rem)]" data-reveal>
+            Mostre o processo.<br /><em class="text-rosa">O público se identifica.</em>
+          </h2>
+        </div>
+        <a href={instagramLink} target="_blank" rel="noopener" class="btn self-start border border-creme/40 hover:bg-creme hover:text-tinta md:self-auto" data-reveal>
+          Ver mais no @{contato.instagram} <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <!-- folha de contato -->
+      <div class="relative mt-20 space-y-10 sm:mt-24" aria-label="Fotos de bastidores e da identidade da True">
+        {
+          [
+            { fotos: tiraBastidores, rotulo: "Bastidores", giro: "-rotate-[2.5deg]", reverso: false },
+            { fotos: tiraIdentidade, rotulo: "Identidade aplicada", giro: "rotate-[1.5deg]", reverso: true },
+          ].map((tira, t) => (
+            <div class:list={["pelicula relative -mx-8 bg-[#0c0909] py-9 shadow-[0_20px_40px_rgb(0_0_0/0.5)]", tira.giro]}>
+              <p class="pointer-events-none absolute left-12 top-[1.35rem] z-10 font-mono text-[0.6rem] uppercase tracking-[0.3em] text-laranja/70">
+                True 400 · {tira.rotulo} ▸
+              </p>
+              <div
+                class:list={["flex w-max animate-marquee-lento gap-3 hover:[animation-play-state:paused]", tira.reverso && "[animation-direction:reverse]"]}
+              >
+                {[0, 1].map((k) =>
+                  tira.fotos.map((f, i) => (
+                    <figure class="relative w-[11rem] shrink-0 sm:w-[15rem]" aria-hidden={k === 1 ? "true" : undefined}>
+                      <Image src={f.src} alt={k === 0 ? f.alt : ""} widths={[240, 400]} sizes="15rem" class="aspect-[4/5] w-full object-cover" />
+                      <figcaption class="mt-1.5 flex justify-between font-mono text-[0.6rem] text-laranja/60">
+                        <span>{t * 6 + i + 1}A</span>
+                        <span>▸ {t * 6 + i + 2}</span>
+                      </figcaption>
+                      {f.marca && (
+                        <>
+                          <svg class="pointer-events-none absolute -inset-4 size-[calc(100%+2rem)] text-rosa" viewBox="0 0 100 120" preserveAspectRatio="none" fill="none" aria-hidden="true">
+                            <path d="M50 4C20 3 5 20 4 58c-1 40 18 58 48 58 30 0 46-20 45-58C96 22 80 6 46 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+                          </svg>
+                          <span class="pointer-events-none absolute -right-3 -top-7 rotate-[-10deg] font-assinatura text-[2.4rem] leading-none text-rosa">essa!</span>
+                        </>
+                      )}
+                    </figure>
+                  )),
+                )}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ══════════════ CLIENTES ══════════════ -->
+    <section id="clientes" class="overflow-hidden bg-creme py-20" aria-labelledby="clientes-titulo">
+      <div class="mx-auto flex max-w-[90rem] items-baseline justify-between gap-6 px-5 sm:px-8">
+        <h2 id="clientes-titulo" class="display text-[clamp(1.8rem,3vw,2.6rem)]">Marcas que já passaram <em class="text-vinho">por aqui</em></h2>
+        <span class="eyebrow hidden text-tinta/45 sm:block">{clientes.length} marcas · e contando</span>
+      </div>
+      <div class="mt-12 flex w-max animate-marquee-lento items-center gap-16 hover:[animation-play-state:paused]">
+        {
+          [0, 1].map((k) =>
+            clientes.map((c) => (
+              <Image
+                src={c.logo}
+                alt={k === 0 ? c.nome : ""}
+                aria-hidden={k === 1 ? "true" : undefined}
+                width={180}
+                class:list={[
+                  "h-20 w-auto shrink-0 object-contain opacity-60 grayscale transition duration-500 hover:opacity-100 hover:grayscale-0",
+                  c.redondo ? "rounded-full" : "mix-blend-multiply",
+                ]}
+              />
+            )),
+          )
+        }
+      </div>
+    </section>
+
+    <!-- ══════════════ p.08 FEEDBACKS ══════════════ -->
+    <section id="cartas" class="relative overflow-hidden bg-creme py-24 sm:py-32" aria-labelledby="cartas-titulo">
+      <div class="mx-auto max-w-[90rem] px-5 sm:px-8">
+        <div class="grid gap-8 lg:grid-cols-12 lg:items-end">
+          <div class="lg:col-span-8">
+            <p class="eyebrow text-vinho" data-reveal>p. 08 — Feedbacks</p>
+            <h2 id="cartas-titulo" class="display mt-6 text-[clamp(2.6rem,5.4vw,5rem)]" data-reveal>
+              Prints que a gente guarda <em class="text-vinho">com carinho.</em>
+            </h2>
+          </div>
+          <p class="flex items-center gap-3 lg:col-span-4 lg:justify-self-end" data-reveal>
+            <span class="text-lg tracking-[0.2em] text-vinho">★★★★★</span>
+            <span class="eyebrow text-tinta/55">5,0 de quem já viveu</span>
+          </p>
+        </div>
+      </div>
+
+      <ul data-carrossel="feedbacks" class="mx-auto mt-10 flex max-w-[90rem] snap-x snap-mandatory gap-6 overflow-x-auto px-5 pb-8 pt-4 [scrollbar-width:none] sm:px-8 lg:mt-20 lg:grid lg:grid-cols-3 lg:gap-10 lg:overflow-visible lg:px-16 lg:pb-16">
+        {
+          depoimentos.map((d, i) => (
+            <li
+              class:list={[
+                "flex w-[80vw] max-w-[21rem] shrink-0 snap-center lg:w-auto lg:max-w-none",
+                ["lg:-rotate-3", "lg:translate-y-16 lg:rotate-2", "lg:-rotate-[1.5deg] lg:translate-y-6"][i],
+              ]}
+              data-reveal
+              style={`--d:${i * 120}ms`}
+            >
+              <figure class="flex w-full flex-col rounded-[2rem] bg-tinta p-2 sm:rounded-[2.6rem] sm:p-2.5 shadow-[0_40px_60px_-30px_rgb(40_0_10/0.6)]">
+                <div class="relative flex flex-1 flex-col overflow-hidden rounded-[1.6rem] bg-[#fbf6f2] sm:rounded-[2.1rem]">
+                  <!-- topo do celular -->
+                  <div class="hidden items-center justify-between px-6 pt-3 text-[0.65rem] font-medium text-tinta/70 sm:flex">
+                    <span>9:4{i + 1}</span>
+                    <span class="h-5 w-20 rounded-full bg-tinta"></span>
+                    <span class="tracking-widest">●●●</span>
+                  </div>
+                  <!-- cabeçalho da conversa -->
+                  <figcaption class="flex items-center gap-3 border-b border-tinta/10 px-4 py-3 sm:pt-4">
+                    <span class="grid size-9 shrink-0 place-items-center sm:size-10 rounded-full bg-gradient-to-br from-rosa to-vinho text-xs font-semibold text-creme">{iniciais(d.nome)}</span>
+                    <span class="leading-tight">
+                      <span class="block text-sm font-semibold">{d.nome}</span>
+                      <span class="block text-xs text-tinta/50">{d.papel} · cliente True</span>
+                    </span>
+                  </figcaption>
+                  <!-- mensagens -->
+                  <blockquote class="flex flex-1 flex-col gap-1.5 px-3.5 py-4 text-[0.8rem] leading-snug sm:min-h-[26rem] sm:gap-2 sm:px-4 sm:py-5 sm:text-[0.88rem]">
+                    <p class="mx-auto mb-1 hidden text-[0.65rem] uppercase tracking-[0.2em] text-tinta/35 sm:block">hoje</p>
+                    {baloes(d.texto).map((b, k, arr) => (
+                      <p class:list={["relative max-w-[90%] self-start rounded-2xl rounded-bl-md bg-rosa-papel px-3 py-2 text-tinta/85 sm:px-3.5 sm:py-2.5", k === arr.length - 1 && "mb-3"]}>
+                        {b}
+                        {k === arr.length - 1 && (
+                          <span class="absolute -bottom-3 right-2 rounded-full bg-white px-1.5 text-[0.7rem] text-rubi shadow-sm" aria-hidden="true">♥</span>
+                        )}
+                      </p>
+                    ))}
+                    <p class="mt-auto max-w-[80%] self-end rounded-2xl rounded-br-md bg-vinho px-3 py-2 text-creme sm:px-3.5 sm:py-2.5" aria-hidden="true">{respostas[i]}</p>
+                    <p class="self-end text-[0.65rem] text-tinta/35" aria-hidden="true">Visto</p>
+                  </blockquote>
+                  <!-- campo -->
+                  <div class="mx-3 mb-4 hidden rounded-full border border-tinta/12 px-4 py-2.5 text-xs text-tinta/35 sm:block" aria-hidden="true">Mensagem…</div>
+                </div>
+              </figure>
+            </li>
+          ))
+        }
+      </ul>
+        <div class="mt-4 flex items-center justify-center gap-5 lg:hidden" data-controles="feedbacks">
+          <button type="button" data-anterior aria-label="Anterior" class="grid size-11 place-items-center rounded-full border border-current/30 transition-colors hover:bg-current/10">←</button>
+          <div class="flex items-center gap-2" data-pontos></div>
+          <button type="button" data-proximo aria-label="Próximo" class="grid size-11 place-items-center rounded-full border border-current/30 transition-colors hover:bg-current/10">→</button>
+        </div>
+    </section>
+
+    <!-- ══════════════ p.09 CONTATO ══════════════ -->
+    <section id="contato" class="relative isolate overflow-hidden bg-vinho text-creme">
+      <div class="grao absolute inset-0 -z-10 opacity-60" aria-hidden="true"></div>
+
+      <div class="mx-auto grid max-w-[90rem] gap-16 px-5 pb-20 pt-24 sm:px-8 sm:pt-32 lg:grid-cols-12 lg:gap-10">
+        <!-- formulário -->
+        <div class="lg:col-span-6">
+          <p class="eyebrow text-rosa-claro" data-reveal>p. 09 — Assine</p>
+          <h2 class="display mt-6 text-[clamp(2.8rem,5.4vw,5rem)]" data-reveal>
+            Sua marca na <em class="text-rosa-claro">próxima capa.</em>
+          </h2>
+          <p class="mt-6 max-w-md text-lg leading-relaxed text-creme/75" data-reveal>
+            Preencha e veja a capa da sua marca ganhar forma. Depois é só enviar: a conversa continua no nosso WhatsApp.
+          </p>
+
+          <form id="form-contato" class="mt-12 space-y-9" data-reveal novalidate>
+            <div class="grid gap-9 sm:grid-cols-2">
+              <label class="block">
+                <span class="eyebrow text-creme/55">Seu nome</span>
+                <input name="nome" required autocomplete="name" placeholder="Como te chamamos?" class="mt-2 w-full border-b border-creme/35 bg-transparent py-2 text-lg text-creme outline-none transition-colors placeholder:text-creme/30 focus:border-rosa-claro" />
+              </label>
+              <label class="block">
+                <span class="eyebrow text-creme/55">Sua marca</span>
+                <input name="marca" autocomplete="organization" placeholder="Nome ou @ do perfil" class="mt-2 w-full border-b border-creme/35 bg-transparent py-2 text-lg text-creme outline-none transition-colors placeholder:text-creme/30 focus:border-rosa-claro" />
+              </label>
+            </div>
+
+            <fieldset>
+              <legend class="eyebrow text-creme/55">O que sua marca precisa?</legend>
+              <div class="mt-4 flex flex-wrap gap-2.5">
+                {
+                  [...servicos.map((sv) => sv.titulo), "Ainda não sei"].map((op, i) => (
+                    <label class="cursor-pointer">
+                      <input type="radio" name="servico" value={op} class="peer sr-only" checked={i === 0} />
+                      <span class="block rounded-full border border-creme/35 px-4 py-2 text-sm transition-colors peer-checked:border-creme peer-checked:bg-creme peer-checked:text-vinho peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-rosa-claro hover:border-creme">
+                        {op}
+                      </span>
+                    </label>
+                  ))
+                }
+              </div>
+            </fieldset>
+
+            <label class="block">
+              <span class="eyebrow text-creme/55">Conta um pouco</span>
+              <textarea name="mensagem" rows="2" placeholder="Opcional" class="mt-2 w-full resize-none border-b border-creme/35 bg-transparent py-2 text-lg text-creme outline-none transition-colors placeholder:text-creme/30 focus:border-rosa-claro"></textarea>
+            </label>
+
+            <p class="text-sm text-rosa-claro" data-erro role="alert" hidden>Conta pra gente seu nome para continuar.</p>
+            <button type="submit" class="btn-creme w-full sm:w-auto">Enviar minha capa pelo WhatsApp <span aria-hidden="true">→</span></button>
+          </form>
+        </div>
+
+        <!-- capa ao vivo -->
+        <div class="relative lg:col-span-5 lg:col-start-8 lg:self-center" data-reveal style="--d:150ms">
+          <p class="mb-4 font-assinatura text-[2.4rem] leading-none text-rosa-claro lg:absolute lg:-left-16 lg:-top-12 lg:-rotate-6" aria-hidden="true">prévia da sua capa ↓</p>
+          <figure class="grao relative mx-auto aspect-[3/4] w-full max-w-[26rem] rotate-2 overflow-hidden bg-papel p-6 text-vinho shadow-[0_40px_70px_-25px_rgb(20_0_5/0.7)] ring-[6px] ring-inset ring-rosa-claro sm:p-8" aria-live="polite">
+            <div class="flex items-start justify-between">
+              <Masthead class="block h-auto w-[62%] text-vinho" aria-hidden="true" />
+              <p class="eyebrow mt-1 text-right text-[0.58rem] leading-relaxed text-vinho">Nº 02<br />2026</p>
+            </div>
+            <p class="eyebrow mt-3 border-y border-vinho/40 py-1.5 text-[0.58rem] text-vinho">Marketing para marcas de moda</p>
+
+            <p class="eyebrow mt-8 text-[0.6rem] text-tinta/75">Na capa desta edição</p>
+            <p class="display mt-2 break-words text-[clamp(2.6rem,6vw,4.2rem)] italic leading-[0.9]" data-capa-marca>Sua Marca</p>
+            <p class="mt-4 max-w-[80%] font-display text-lg leading-snug text-tinta">
+              como <span data-capa-servico>{servicos[0].titulo.toLowerCase()}</span> fez a marca ser lembrada
+            </p>
+            <ul class="mt-7 space-y-1.5 border-l-2 border-vinho/40 pl-3 font-display text-[0.95rem] leading-snug text-tinta/85">
+              <li>+ O método em quatro atos, por dentro</li>
+              <li>+ Bastidores do primeiro shooting</li>
+            </ul>
+
+            <div class="absolute inset-x-6 bottom-6 flex items-end justify-between gap-4 sm:inset-x-8 sm:bottom-8">
+              <div>
+                <p class="eyebrow text-[0.58rem] text-tinta/70">Entrevista</p>
+                <p class="font-display text-base italic">por <span data-capa-nome>você</span></p>
+              </div>
+              <svg class="h-10 w-24 bg-white p-1 text-tinta" viewBox="0 0 96 40" aria-hidden="true">
+                {[2,1,3,1,1,2,4,1,2,1,1,3,2,1,1,2,3,1,2,1,1,4,1,2,1,3,1,1,2].reduce<{ x: number; els: { x: number; w: number }[] }>((acc, w, k) => { if (k % 2 === 0) acc.els.push({ x: acc.x, w }); acc.x += w + 1; return acc; }, { x: 2, els: [] }).els.map((r) => <rect x={r.x} y="2" width={r.w} height="30" fill="currentColor" />)}
+                <text x="48" y="39" text-anchor="middle" font-size="6" fill="currentColor" font-family="monospace">7 891234 560026</text>
+              </svg>
+            </div>
+          </figure>
+        </div>
+      </div>
+
+      <!-- contatos diretos -->
+      <div class="border-t border-creme/15">
+        <ul class="mx-auto grid max-w-[90rem] px-5 sm:grid-cols-3 sm:px-8">
+          <li class="border-b border-creme/15 py-6 sm:border-b-0 sm:border-r sm:pr-6">
+            <a href={whatsappLink(msgOrcamento)} target="_blank" rel="noopener" class="group block">
+              <span class="eyebrow text-rosa-claro">WhatsApp</span>
+              <span class="mt-1 block font-display text-2xl group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">{contato.whatsappExibicao}</span>
+            </a>
+          </li>
+          <li class="border-b border-creme/15 py-6 sm:border-b-0 sm:border-r sm:px-6">
+            <a href={`mailto:${contato.email}`} class="group block">
+              <span class="eyebrow text-rosa-claro">E-mail</span>
+              <span class="mt-1 block break-all font-display text-2xl group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">{contato.email}</span>
+            </a>
+          </li>
+          <li class="py-6 sm:pl-6">
+            <a href={instagramLink} target="_blank" rel="noopener" class="group block">
+              <span class="eyebrow text-rosa-claro">Instagram</span>
+              <span class="mt-1 block font-display text-2xl group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">@{contato.instagram}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <a
+    href={whatsappLink(msgOrcamento)}
+    target="_blank"
+    rel="noopener"
+    aria-label="Falar no WhatsApp"
+    class="fixed bottom-5 right-5 z-40 grid size-14 place-items-center rounded-full bg-creme text-vinho shadow-[0_10px_30px_-8px_rgb(92_3_21/0.6)] ring-1 ring-vinho/15 transition-transform hover:scale-105"
+  >
+    <svg viewBox="0 0 24 24" class="size-6" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.22-.08-.39-.12-.55.13-.17.24-.64.8-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.55-1.34-.76-1.84-.2-.48-.4-.42-.55-.42h-.47c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.21.88 2.39 1 2.55.13.17 1.74 2.65 4.21 3.72.59.25 1.05.4 1.4.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z"/></svg>
+  </a>
+</Layout>
+
+<script>
+  import { contato } from "../data/site";
+
+  // carrosséis (celular/tablet): setas + pontos
+  document.querySelectorAll<HTMLElement>("[data-carrossel]").forEach((trilho) => {
+    const ctrl = document.querySelector<HTMLElement>(`[data-controles="${trilho.dataset.carrossel}"]`);
+    if (!ctrl) return;
+    const itens = [...trilho.children] as HTMLElement[];
+    const pontos = ctrl.querySelector<HTMLElement>("[data-pontos]")!;
+    const botoes = itens.map((_, i) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", `Ir para o item ${i + 1}`);
+      b.className = "h-2 w-2 rounded-full bg-current opacity-30 transition-all duration-300";
+      b.addEventListener("click", () => ir(i));
+      pontos.append(b);
+      return b;
+    });
+    let atual = 0;
+    const ir = (i: number) => {
+      const alvo = itens[Math.max(0, Math.min(itens.length - 1, i))];
+      trilho.scrollTo({ left: alvo.offsetLeft - (trilho.clientWidth - alvo.clientWidth) / 2, behavior: "smooth" });
+    };
+    const marcar = () => {
+      const centro = trilho.scrollLeft + trilho.clientWidth / 2;
+      let melhor = 0, dist = Infinity;
+      itens.forEach((el, i) => {
+        const d = Math.abs(el.offsetLeft + el.clientWidth / 2 - centro);
+        if (d < dist) { dist = d; melhor = i; }
+      });
+      atual = melhor;
+      botoes.forEach((b, i) => {
+        b.classList.toggle("opacity-100", i === atual);
+        b.classList.toggle("w-6", i === atual);
+        b.classList.toggle("opacity-30", i !== atual);
+      });
+    };
+    ctrl.querySelector("[data-anterior]")!.addEventListener("click", () => ir(atual - 1));
+    ctrl.querySelector("[data-proximo]")!.addEventListener("click", () => ir(atual + 1));
+    trilho.addEventListener("scroll", () => requestAnimationFrame(marcar), { passive: true });
+    marcar();
+  });
+
+  // formulário → capa ao vivo + WhatsApp
+  const form = document.getElementById("form-contato") as HTMLFormElement;
+  const erro = form.querySelector<HTMLElement>("[data-erro]")!;
+  const capaMarca = document.querySelector<HTMLElement>("[data-capa-marca]")!;
+  const capaServico = document.querySelector<HTMLElement>("[data-capa-servico]")!;
+  const capaNome = document.querySelector<HTMLElement>("[data-capa-nome]")!;
+  const valor = (n: string) => String(new FormData(form).get(n) ?? "").trim();
+
+  const atualizarCapa = () => {
+    capaMarca.textContent = valor("marca") || "Sua Marca";
+    const sv = valor("servico");
+    capaServico.textContent = sv === "Ainda não sei" ? "a estratégia certa" : sv.toLowerCase();
+    capaNome.textContent = valor("nome") || "você";
+  };
+  form.addEventListener("input", atualizarCapa);
+  form.addEventListener("change", atualizarCapa);
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const nome = valor("nome");
+    if (!nome) {
+      erro.hidden = false;
+      form.querySelector<HTMLInputElement>("[name=nome]")?.focus();
+      return;
+    }
+    erro.hidden = true;
+    const marca = valor("marca");
+    const texto = [
+      `Olá, True Marketing! Meu nome é ${nome}${marca ? ` (${marca})` : ""}.`,
+      `Quero ser capa! Tenho interesse em: ${valor("servico")}.`,
+      valor("mensagem"),
+    ]
+      .filter(Boolean)
+      .join("\n");
+    window.open(`https://wa.me/${contato.whatsappNumero}?text=${encodeURIComponent(texto)}`, "_blank", "noopener");
+  });
+</script>

@@ -1,0 +1,25 @@
+---
+import Logo from "./Logo.astro";
+
+interface Props {
+  id: string;
+  /** classes de posição/tamanho; o padrão é o encaixe da colagem do desktop */
+  class?: string;
+}
+const { id, class: className = "absolute bottom-2 left-[4%] size-36" } = Astro.props;
+---
+
+<div class:list={["-rotate-12", className]}>
+  <svg viewBox="0 0 120 120" class="absolute inset-0 size-full">
+    <defs><path id={id} d="M60 60m-43 0a43 43 0 1 1 86 0a43 43 0 1 1-86 0" /></defs>
+    <circle cx="60" cy="60" r="57" fill="none" stroke="currentColor" stroke-width="2.2" />
+    <circle cx="60" cy="60" r="53" fill="none" stroke="currentColor" stroke-width="0.8" />
+    <circle cx="60" cy="60" r="32" fill="none" stroke="currentColor" stroke-width="0.8" />
+    <text class="fill-current font-sans text-[9.5px] font-semibold uppercase">
+      <textPath href={`#${id}`} textLength="268" lengthAdjust="spacing">Criar ✦ Comunicar ✦ Inovar ✦</textPath>
+    </text>
+  </svg>
+  <div class="absolute inset-0 grid place-items-center">
+    <Logo variante="monograma" class="w-[38%]" decorativo />
+  </div>
+</div>

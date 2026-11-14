@@ -1,0 +1,25 @@
+---
+/**
+ * Logos oficiais da True Marketing — vetores extraídos do PDF do Canva ("ID True"),
+ * fonte original "Against". Todos usam currentColor: a cor vem do texto (text-vinho, text-creme…).
+ */
+import Principal from "../assets/brand/logo.svg";
+import Minusculo from "../assets/brand/logo-minusculo.svg";
+import Monograma from "../assets/brand/monograma.svg";
+
+interface Props {
+  variante?: "principal" | "minusculo" | "monograma";
+  class?: string;
+  decorativo?: boolean;
+}
+const { variante = "principal", class: className = "", decorativo = false } = Astro.props;
+const Svg = { principal: Principal, minusculo: Minusculo, monograma: Monograma }[variante];
+---
+
+{
+  decorativo ? (
+    <Svg class:list={["block h-auto", className]} aria-hidden="true" />
+  ) : (
+    <Svg class:list={["block h-auto", className]} role="img" aria-label="True Marketing" />
+  )
+}
