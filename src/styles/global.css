@@ -51,7 +51,7 @@
   @apply font-sans text-[0.7rem] font-medium uppercase tracking-[0.3em];
 }
 @utility display {
-  @apply font-display font-normal leading-[0.92] tracking-[-0.015em];
+  @apply font-display font-medium leading-[0.92] tracking-[-0.015em];
 }
 @utility btn {
   @apply inline-flex items-center justify-center gap-3 px-7 py-4 text-[0.7rem] font-medium uppercase tracking-[0.28em] transition-colors duration-300;
