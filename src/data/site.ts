@@ -4,6 +4,8 @@ import gki from "../assets/clientes/gki.png";
 import gKids from "../assets/clientes/g-kids.png";
 import giKids from "../assets/clientes/gi-kids.png";
 import bbVal from "../assets/clientes/bb-val.jpg";
+import ariellyKids from "../assets/clientes/arielly-kids-v2.png";
+import pollyKids from "../assets/clientes/polly-kids-v2.png";
 
 import fotoDigital from "../assets/fotos/tiphany-digital.jpg";
 import fotoEstudio from "../assets/fotos/tiphany-estudio.jpg";
@@ -142,6 +144,8 @@ export const clientes: Cliente[] = [
   { nome: "G Kids", logo: gKids },
   { nome: "Gi Kids", logo: giKids },
   { nome: "BB Val Modas", logo: bbVal, redondo: true },
+  { nome: "Arielly Kids", logo: ariellyKids },
+  { nome: "Polly Kids", logo: pollyKids },
 ];
 
 export const depoimentos = [
