@@ -59,7 +59,7 @@ export const crencas = [
 
 export const fichaTecnica = [
   { valor: "50+", rotulo: "marcas e perfis" },
-  { valor: "3+", rotulo: "anos na moda" },
+  { valor: "9", rotulo: "anos de trabalho" },
   { valor: "5★", rotulo: "nas avaliações" },
 ] as const;
 
