@@ -1,11 +1,8 @@
 import type { ImageMetadata } from "astro";
 
 import gki from "../assets/clientes/gki.png";
-import bintKids from "../assets/clientes/bint-kids.png";
-import dudas from "../assets/clientes/dudas.png";
 import gKids from "../assets/clientes/g-kids.png";
 import giKids from "../assets/clientes/gi-kids.png";
-import mariahzinhas from "../assets/clientes/mariahzinhas.png";
 import bbVal from "../assets/clientes/bb-val.jpg";
 
 import fotoDigital from "../assets/fotos/tiphany-digital.jpg";
@@ -142,11 +139,8 @@ export type Cliente = { nome: string; logo: ImageMetadata; redondo?: boolean };
 
 export const clientes: Cliente[] = [
   { nome: "GKI", logo: gki },
-  { nome: "Bint Kids", logo: bintKids },
-  { nome: "Duda's", logo: dudas },
   { nome: "G Kids", logo: gKids },
   { nome: "Gi Kids", logo: giKids },
-  { nome: "Mariahzinha's Teens", logo: mariahzinhas },
   { nome: "BB Val Modas", logo: bbVal, redondo: true },
 ];
 
